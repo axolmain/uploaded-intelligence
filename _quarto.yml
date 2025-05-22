@@ -1,0 +1,45 @@
+project:
+  type: website
+
+editor:
+  render-on-save: true
+
+website:
+  title: "AI Research Documentation"
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - text: "Introduction"
+        href: index.qmd
+      - text: "About"
+        href: about.qmd
+      - section: "AI Powered Deep Research Docs"
+        contents:
+          - text: "Claude Full Brain Emulator"
+            href: ai-powered-deepresearch/claude-full-brain-emu.qmd
+          - section: "Gemini's Biocybernetics & WBE"
+            href: ai-powered-deepresearch/gemini-biocybernetics-wbe/index.qmd
+            contents:
+              - text: "Introduction"
+                href: ai-powered-deepresearch/gemini-biocybernetics-wbe/index.qmd
+              - text: "Biocybernetics"
+                href: ai-powered-deepresearch/gemini-biocybernetics-wbe/biocybernetics.qmd
+              - text: "WBE"
+                href: ai-powered-deepresearch/gemini-biocybernetics-wbe/wbe.qmd
+              - text: "Knowledge Expedition"
+                href: ai-powered-deepresearch/gemini-biocybernetics-wbe/knowledge_expedition.qmd
+              - text: "Masters Prep"
+                href: ai-powered-deepresearch/gemini-biocybernetics-wbe/masters_prep.qmd
+              - text: "Conclusion"
+                href: ai-powered-deepresearch/gemini-biocybernetics-wbe/conclusion.qmd
+              - text: "Works Cited"
+                href: ai-powered-deepresearch/gemini-biocybernetics-wbe/works_cited.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true

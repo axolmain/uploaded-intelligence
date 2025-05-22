@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Fruit fly brains to super-sims: joining the brain emulation revolution – AI Research Documentation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-7b1b06e26e1e2798ccde3208f86b5bbd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ai-powered-deepresearch/claude-full-brain-emu.html">AI Powered Deep Research Docs</a></li><li class="breadcrumb-item"><a href="../ai-powered-deepresearch/claude-full-brain-emu.html">Claude Full Brain Emulator</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">AI Research Documentation</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">AI Powered Deep Research Docs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ai-powered-deepresearch/claude-full-brain-emu.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Claude Full Brain Emulator</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../ai-powered-deepresearch/gemini-biocybernetics-wbe/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gemini's Biocybernetics &amp; WBE</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ai-powered-deepresearch/gemini-biocybernetics-wbe/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ai-powered-deepresearch/gemini-biocybernetics-wbe/biocybernetics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Biocybernetics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ai-powered-deepresearch/gemini-biocybernetics-wbe/wbe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WBE</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ai-powered-deepresearch/gemini-biocybernetics-wbe/knowledge_expedition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Knowledge Expedition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ai-powered-deepresearch/gemini-biocybernetics-wbe/masters_prep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Masters Prep</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ai-powered-deepresearch/gemini-biocybernetics-wbe/conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conclusion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ai-powered-deepresearch/gemini-biocybernetics-wbe/works_cited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Works Cited</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-state-of-brain-emulation-in-2025" id="toc-the-state-of-brain-emulation-in-2025" class="nav-link active" data-scroll-target="#the-state-of-brain-emulation-in-2025">The state of brain emulation in 2025</a></li>
+  <li><a href="#brain-emulation-achievements-by-species" id="toc-brain-emulation-achievements-by-species" class="nav-link" data-scroll-target="#brain-emulation-achievements-by-species">Brain emulation achievements by species</a>
+  <ul class="collapse">
+  <li><a href="#fruit-fly-drosophila-melanogaster" id="toc-fruit-fly-drosophila-melanogaster" class="nav-link" data-scroll-target="#fruit-fly-drosophila-melanogaster">Fruit fly (Drosophila melanogaster)</a></li>
+  <li><a href="#nematode-c.-elegans" id="toc-nematode-c.-elegans" class="nav-link" data-scroll-target="#nematode-c.-elegans">Nematode (C. elegans)</a></li>
+  <li><a href="#mouse" id="toc-mouse" class="nav-link" data-scroll-target="#mouse">Mouse</a></li>
+  <li><a href="#human" id="toc-human" class="nav-link" data-scroll-target="#human">Human</a></li>
+  </ul></li>
+  <li><a href="#how-software-developers-can-contribute" id="toc-how-software-developers-can-contribute" class="nav-link" data-scroll-target="#how-software-developers-can-contribute">How software developers can contribute</a>
+  <ul class="collapse">
+  <li><a href="#brian2" id="toc-brian2" class="nav-link" data-scroll-target="#brian2">Brian2</a></li>
+  <li><a href="#openworm" id="toc-openworm" class="nav-link" data-scroll-target="#openworm">OpenWorm</a></li>
+  <li><a href="#neuromlpyneuroml" id="toc-neuromlpyneuroml" class="nav-link" data-scroll-target="#neuromlpyneuroml">NeuroML/pyNeuroML</a></li>
+  <li><a href="#brainpy" id="toc-brainpy" class="nav-link" data-scroll-target="#brainpy">BrainPy</a></li>
+  </ul></li>
+  <li><a href="#hardware-and-software-within-1000" id="toc-hardware-and-software-within-1000" class="nav-link" data-scroll-target="#hardware-and-software-within-1000">Hardware and software within $1000</a>
+  <ul class="collapse">
+  <li><a href="#hardware-recommendations" id="toc-hardware-recommendations" class="nav-link" data-scroll-target="#hardware-recommendations">Hardware recommendations</a></li>
+  <li><a href="#software-frameworks-freeopen-source" id="toc-software-frameworks-freeopen-source" class="nav-link" data-scroll-target="#software-frameworks-freeopen-source">Software frameworks (free/open-source)</a></li>
+  <li><a href="#free-datasets-and-resources" id="toc-free-datasets-and-resources" class="nav-link" data-scroll-target="#free-datasets-and-resources">Free datasets and resources</a></li>
+  </ul></li>
+  <li><a href="#research-communities-and-platforms" id="toc-research-communities-and-platforms" class="nav-link" data-scroll-target="#research-communities-and-platforms">Research communities and platforms</a>
+  <ul class="collapse">
+  <li><a href="#online-forums-and-communities" id="toc-online-forums-and-communities" class="nav-link" data-scroll-target="#online-forums-and-communities">Online forums and communities</a></li>
+  <li><a href="#conferences-accepting-independent-research" id="toc-conferences-accepting-independent-research" class="nav-link" data-scroll-target="#conferences-accepting-independent-research">Conferences accepting independent research</a></li>
+  <li><a href="#publishing-platforms" id="toc-publishing-platforms" class="nav-link" data-scroll-target="#publishing-platforms">Publishing platforms</a></li>
+  <li><a href="#diy-tools-for-hands-on-research" id="toc-diy-tools-for-hands-on-research" class="nav-link" data-scroll-target="#diy-tools-for-hands-on-research">DIY tools for hands-on research</a></li>
+  </ul></li>
+  <li><a href="#getting-started-your-brain-emulation-workbench" id="toc-getting-started-your-brain-emulation-workbench" class="nav-link" data-scroll-target="#getting-started-your-brain-emulation-workbench">Getting started: your brain emulation workbench</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ai-powered-deepresearch/claude-full-brain-emu.html">AI Powered Deep Research Docs</a></li><li class="breadcrumb-item"><a href="../ai-powered-deepresearch/claude-full-brain-emu.html">Claude Full Brain Emulator</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Fruit fly brains to super-sims: joining the brain emulation revolution</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>From C. elegans to DeepSouth, the quest to digitally recreate biological brains has made remarkable strides in recent years. Today’s cutting-edge research has successfully mapped entire insect brains with unprecedented detail, though fully functional emulations remain elusive even for simple organisms. For software developers with ML experience, this rapidly evolving field offers accessible entry points through open-source projects, consumer-grade hardware, and welcoming communities – no neuroscience PhD required.</p>
+<section id="the-state-of-brain-emulation-in-2025" class="level2">
+<h2 class="anchored" data-anchor-id="the-state-of-brain-emulation-in-2025">The state of brain emulation in 2025</h2>
+<p>Complete biological brain emulation – recreating an entire brain’s structure and functionality in software – remains aspirational even for the simplest organisms. The most advanced work exists at smaller scales with progressively improving resolution and accuracy. While researchers have fully mapped certain connectomes (neural wiring diagrams), translating these static maps into dynamic, functional emulations represents the current frontier.</p>
+<p>The <strong>FlyWire Consortium achieved a breakthrough in 2024</strong> by completely mapping all 139,255 neurons and 50 million synaptic connections in the fruit fly brain. This represents the first complete connectome of an adult insect brain with complex behaviors. A computational model by Philip Shiu can now simulate brain-wide neural activity and predict responses to specific stimuli on a standard laptop.</p>
+<p>On the computational side, the <strong>DeepSouth Neuromorphic Supercomputer</strong> became operational in April 2024 at Western Sydney University. It can perform 228 trillion synaptic operations per second – comparable to estimates for the human brain – while using significantly less power than traditional supercomputers.</p>
+<p>Despite decades of research, <strong>even C. elegans with its mere 302 neurons doesn’t have a complete functional emulation</strong>. The OpenWorm project has made significant progress modeling specific aspects of this simple organism, but full emulation remains challenging due to difficulties determining synaptic weights and dynamic properties.</p>
+</section>
+<section id="brain-emulation-achievements-by-species" class="level2">
+<h2 class="anchored" data-anchor-id="brain-emulation-achievements-by-species">Brain emulation achievements by species</h2>
+<section id="fruit-fly-drosophila-melanogaster" class="level3">
+<h3 class="anchored" data-anchor-id="fruit-fly-drosophila-melanogaster">Fruit fly (Drosophila melanogaster)</h3>
+<p>Currently represents the most advanced achievement with:</p>
+<ul>
+<li>Complete connectome mapping of all 139,255 neurons and 50 million connections</li>
+<li>Functional simulation that can predict neural responses to sensory stimuli</li>
+<li>Accurate modeling of specific behaviors like feeding responses</li>
+<li>First comprehensive model of an animal with complex behaviors (walking, flying, learning)</li>
+</ul>
+</section>
+<section id="nematode-c.-elegans" class="level3">
+<h3 class="anchored" data-anchor-id="nematode-c.-elegans">Nematode (C. elegans)</h3>
+<p>Despite its simplicity (302 neurons):</p>
+<ul>
+<li>No complete functional emulation has been achieved</li>
+<li>OpenWorm project has created physics simulations of worm body movement</li>
+<li>Modeled specific neuronal systems and basic motor responses</li>
+<li>The “connectome” (wiring diagram) has been known since 1986</li>
+</ul>
+</section>
+<section id="mouse" class="level3">
+<h3 class="anchored" data-anchor-id="mouse">Mouse</h3>
+<p>Progress limited to partial brain regions:</p>
+<ul>
+<li>Blue Brain Project has modeled neocortical columns and regions</li>
+<li>Allen Institute has created detailed cellular models</li>
+<li>No complete functional emulation of a mouse brain (71 million neurons)</li>
+<li>Remains computationally challenging</li>
+</ul>
+</section>
+<section id="human" class="level3">
+<h3 class="anchored" data-anchor-id="human">Human</h3>
+<p>Complete emulation remains a distant goal:</p>
+<ul>
+<li>Far beyond current computational capabilities (86 billion neurons, 100 trillion synapses)</li>
+<li>2024 study estimated whole-brain simulation might be feasible later than 2044</li>
+<li>Current efforts focus on specific brain regions or use highly abstracted models</li>
+</ul>
+</section>
+</section>
+<section id="how-software-developers-can-contribute" class="level2">
+<h2 class="anchored" data-anchor-id="how-software-developers-can-contribute">How software developers can contribute</h2>
+<p>Several open-source projects welcome contributors with .NET and Python ML experience:</p>
+<section id="brian2" class="level3">
+<h3 class="anchored" data-anchor-id="brian2">Brian2</h3>
+<p>A Python-based simulator for spiking neural networks:</p>
+<ul>
+<li>Uses familiar Python syntax and mathematical notation</li>
+<li>Excellent starting point for developers with Python experience</li>
+<li>When combined with Brian2GeNN, achieves significant speedups on NVIDIA GPUs</li>
+<li>Contribution opportunities: extending simulator capabilities, developing domain-specific extensions, creating visualization tools</li>
+</ul>
+</section>
+<section id="openworm" class="level3">
+<h3 class="anchored" data-anchor-id="openworm">OpenWorm</h3>
+<p>Project aiming to create complete C. elegans simulation:</p>
+<ul>
+<li>Multiple sub-projects including neuronal simulations and body mechanics</li>
+<li><strong>c302</strong> sub-project (neural network framework) especially suitable for Python developers</li>
+<li>Contribution opportunities: working on Python-based neuronal simulations, developing integration between neural and physical simulations</li>
+</ul>
+</section>
+<section id="neuromlpyneuroml" class="level3">
+<h3 class="anchored" data-anchor-id="neuromlpyneuroml">NeuroML/pyNeuroML</h3>
+<p>Standardized description language for neural models:</p>
+<ul>
+<li>Python package for working with standardized neural model descriptions</li>
+<li>Bridges different simulators and promotes reproducibility</li>
+<li>Contribution opportunities: developing model conversion tools, creating visualization tools, building simulator bridges</li>
+</ul>
+</section>
+<section id="brainpy" class="level3">
+<h3 class="anchored" data-anchor-id="brainpy">BrainPy</h3>
+<p>Framework focusing on efficient simulation of brain dynamics:</p>
+<ul>
+<li>Based on Just-In-Time (JIT) compilation for efficiency</li>
+<li>Ideal for developers with Python ML experience, especially those familiar with JAX</li>
+<li>Contribution opportunities: developing neuron models, creating analysis tools, implementing brain-inspired algorithms</li>
+</ul>
+</section>
+</section>
+<section id="hardware-and-software-within-1000" class="level2">
+<h2 class="anchored" data-anchor-id="hardware-and-software-within-1000">Hardware and software within $1000</h2>
+<section id="hardware-recommendations" class="level3">
+<h3 class="anchored" data-anchor-id="hardware-recommendations">Hardware recommendations</h3>
+<ul>
+<li><strong>Primary GPU</strong>: NVIDIA RTX 4060 (~$300-350)
+<ul>
+<li>8GB GDDR6 VRAM, sufficient for medium-sized neural models</li>
+<li>3,072 CUDA cores with 24 RT cores and 96 Tensor cores</li>
+<li>Achieves 10-200x speedups compared to CPU-only solutions</li>
+</ul></li>
+<li><strong>System requirements</strong> (if upgrading existing PC):
+<ul>
+<li>CPU: AMD Ryzen 5600X (~$200) or Intel i5-12400F (~$180)</li>
+<li>RAM: 32GB DDR4 (~$80-100)</li>
+<li>Storage: 1TB NVMe SSD (~$80-100)</li>
+<li>Power Supply: 650W 80+ Gold (~$80)</li>
+</ul></li>
+</ul>
+</section>
+<section id="software-frameworks-freeopen-source" class="level3">
+<h3 class="anchored" data-anchor-id="software-frameworks-freeopen-source">Software frameworks (free/open-source)</h3>
+<ul>
+<li><strong>Brian2 + Brian2GeNN</strong>: Python-based neural simulator with GPU acceleration</li>
+<li><strong>GeNN</strong>: GPU-enhanced Neural Networks for maximum performance</li>
+<li><strong>NEST Simulator</strong>: Specialized for large-scale network simulations</li>
+<li><strong>Visualization tools</strong>: Matplotlib/Seaborn, NetworkX, Neo + Elephant</li>
+</ul>
+</section>
+<section id="free-datasets-and-resources" class="level3">
+<h3 class="anchored" data-anchor-id="free-datasets-and-resources">Free datasets and resources</h3>
+<ul>
+<li><strong>OpenNeuro</strong>: Repository of brain imaging data</li>
+<li><strong>Allen Brain Observatory</strong>: Neural activity recordings in mouse visual cortex</li>
+<li><strong>NeuroElectro</strong>: Database of electrophysiological properties</li>
+<li><strong>Neuronal Dynamics textbook</strong>: With Brian2 exercises</li>
+</ul>
+</section>
+</section>
+<section id="research-communities-and-platforms" class="level2">
+<h2 class="anchored" data-anchor-id="research-communities-and-platforms">Research communities and platforms</h2>
+<section id="online-forums-and-communities" class="level3">
+<h3 class="anchored" data-anchor-id="online-forums-and-communities">Online forums and communities</h3>
+<ul>
+<li><strong>Open Neuromorphic Community</strong>: Focus on neuromorphic computing and brain-inspired devices</li>
+<li><strong>Reddit communities</strong>: r/Neuroscience (180k+ members), r/ComputationalNeuroscience</li>
+<li><strong>Carboncopies Foundation</strong>: Organization dedicated to advancing whole brain emulation</li>
+</ul>
+</section>
+<section id="conferences-accepting-independent-research" class="level3">
+<h3 class="anchored" data-anchor-id="conferences-accepting-independent-research">Conferences accepting independent research</h3>
+<ul>
+<li><strong>Foresight Neurotech Workshop</strong>: Focused on brain emulation approaches</li>
+<li><strong>Cognitive Computational Neuroscience (CCN)</strong>: Annual conference with virtual options</li>
+<li><strong>Organization for Computational Neurosciences (OCNS)</strong>: Premier forum with workshops</li>
+</ul>
+</section>
+<section id="publishing-platforms" class="level3">
+<h3 class="anchored" data-anchor-id="publishing-platforms">Publishing platforms</h3>
+<ul>
+<li><strong>Preprint servers</strong>: arXiv, bioRxiv, NeuroLibre</li>
+<li><strong>Open Source Brain (OSB)</strong>: For sharing and collaboratively developing models</li>
+<li><strong>OpenNeuro</strong>: Repository for sharing brain data</li>
+</ul>
+</section>
+<section id="diy-tools-for-hands-on-research" class="level3">
+<h3 class="anchored" data-anchor-id="diy-tools-for-hands-on-research">DIY tools for hands-on research</h3>
+<ul>
+<li><strong>OpenBCI</strong>: Open-source brain-computer interface ($200-800)</li>
+<li><strong>PiEEG</strong>: EEG acquisition board for Raspberry Pi (~$250)</li>
+<li><strong>icibici/Brain-Computer Interface</strong>: Ultra low-cost BCI ($25)</li>
+</ul>
+</section>
+</section>
+<section id="getting-started-your-brain-emulation-workbench" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started-your-brain-emulation-workbench">Getting started: your brain emulation workbench</h2>
+<p>For maximum impact as a software developer entering brain emulation research:</p>
+<ol type="1">
+<li><p><strong>Start with Brian2</strong>: Begin with simulating simple neuron models and small circuits using this Python framework. Its familiar syntax makes it accessible while still enabling serious research.</p></li>
+<li><p><strong>Build a computational setup</strong>: Invest in an RTX 4060 GPU and 32GB RAM to enable medium-scale simulations that would be impossible on CPU alone.</p></li>
+<li><p><strong>Contribute to OpenWorm</strong>: Join the c302 sub-project focusing on neural network modeling in C. elegans, leveraging your Python skills while working on the frontier of whole-organism emulation.</p></li>
+<li><p><strong>Share your work</strong>: Join the Open Neuromorphic Community and post preprints to arXiv. Consider virtual conference attendance to connect with professional researchers.</p></li>
+<li><p><strong>Try hands-on experiments</strong>: If you want a physical component, OpenBCI offers brain-computer interface hardware within your budget, allowing you to record and analyze actual brain signals.</p></li>
+</ol>
+<p>The gap between complete structural mapping and functional emulation represents the most exciting frontier in this field. Your software development skills are directly applicable to addressing this challenge, making this an ideal time to join the brain emulation revolution – no matter how small the brain.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

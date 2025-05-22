@@ -1,0 +1,145 @@
+---
+title: "Fruit fly brains to super-sims: joining the brain emulation revolution"
+---
+
+From C. elegans to DeepSouth, the quest to digitally recreate biological brains has made remarkable strides in recent years. Today's cutting-edge research has successfully mapped entire insect brains with unprecedented detail, though fully functional emulations remain elusive even for simple organisms. For software developers with ML experience, this rapidly evolving field offers accessible entry points through open-source projects, consumer-grade hardware, and welcoming communities – no neuroscience PhD required.
+
+## The state of brain emulation in 2025
+
+Complete biological brain emulation – recreating an entire brain's structure and functionality in software – remains aspirational even for the simplest organisms. The most advanced work exists at smaller scales with progressively improving resolution and accuracy. While researchers have fully mapped certain connectomes (neural wiring diagrams), translating these static maps into dynamic, functional emulations represents the current frontier.
+
+The **FlyWire Consortium achieved a breakthrough in 2024** by completely mapping all 139,255 neurons and 50 million synaptic connections in the fruit fly brain. This represents the first complete connectome of an adult insect brain with complex behaviors. A computational model by Philip Shiu can now simulate brain-wide neural activity and predict responses to specific stimuli on a standard laptop.
+
+On the computational side, the **DeepSouth Neuromorphic Supercomputer** became operational in April 2024 at Western Sydney University. It can perform 228 trillion synaptic operations per second – comparable to estimates for the human brain – while using significantly less power than traditional supercomputers.
+
+Despite decades of research, **even C. elegans with its mere 302 neurons doesn't have a complete functional emulation**. The OpenWorm project has made significant progress modeling specific aspects of this simple organism, but full emulation remains challenging due to difficulties determining synaptic weights and dynamic properties.
+
+## Brain emulation achievements by species
+
+### Fruit fly (Drosophila melanogaster)
+Currently represents the most advanced achievement with:
+
+* Complete connectome mapping of all 139,255 neurons and 50 million connections
+* Functional simulation that can predict neural responses to sensory stimuli
+* Accurate modeling of specific behaviors like feeding responses
+* First comprehensive model of an animal with complex behaviors (walking, flying, learning)
+
+### Nematode (C. elegans)
+Despite its simplicity (302 neurons):
+
+* No complete functional emulation has been achieved
+* OpenWorm project has created physics simulations of worm body movement
+* Modeled specific neuronal systems and basic motor responses
+* The "connectome" (wiring diagram) has been known since 1986
+
+### Mouse
+Progress limited to partial brain regions:
+
+* Blue Brain Project has modeled neocortical columns and regions
+* Allen Institute has created detailed cellular models
+* No complete functional emulation of a mouse brain (71 million neurons)
+* Remains computationally challenging
+
+### Human
+Complete emulation remains a distant goal:
+
+* Far beyond current computational capabilities (86 billion neurons, 100 trillion synapses)
+* 2024 study estimated whole-brain simulation might be feasible later than 2044
+* Current efforts focus on specific brain regions or use highly abstracted models
+
+## How software developers can contribute
+
+Several open-source projects welcome contributors with .NET and Python ML experience:
+
+### Brian2
+A Python-based simulator for spiking neural networks:
+
+* Uses familiar Python syntax and mathematical notation
+* Excellent starting point for developers with Python experience
+* When combined with Brian2GeNN, achieves significant speedups on NVIDIA GPUs
+* Contribution opportunities: extending simulator capabilities, developing domain-specific extensions, creating visualization tools
+
+### OpenWorm
+Project aiming to create complete C. elegans simulation:
+
+* Multiple sub-projects including neuronal simulations and body mechanics
+* **c302** sub-project (neural network framework) especially suitable for Python developers
+* Contribution opportunities: working on Python-based neuronal simulations, developing integration between neural and physical simulations
+
+### NeuroML/pyNeuroML
+Standardized description language for neural models:
+
+* Python package for working with standardized neural model descriptions
+* Bridges different simulators and promotes reproducibility
+* Contribution opportunities: developing model conversion tools, creating visualization tools, building simulator bridges
+
+### BrainPy
+Framework focusing on efficient simulation of brain dynamics:
+
+* Based on Just-In-Time (JIT) compilation for efficiency
+* Ideal for developers with Python ML experience, especially those familiar with JAX
+* Contribution opportunities: developing neuron models, creating analysis tools, implementing brain-inspired algorithms
+
+## Hardware and software within $1000
+
+### Hardware recommendations
+* **Primary GPU**: NVIDIA RTX 4060 (~$300-350)
+  * 8GB GDDR6 VRAM, sufficient for medium-sized neural models
+  * 3,072 CUDA cores with 24 RT cores and 96 Tensor cores
+  * Achieves 10-200x speedups compared to CPU-only solutions
+
+* **System requirements** (if upgrading existing PC):
+  * CPU: AMD Ryzen 5600X (~$200) or Intel i5-12400F (~$180)
+  * RAM: 32GB DDR4 (~$80-100)
+  * Storage: 1TB NVMe SSD (~$80-100)
+  * Power Supply: 650W 80+ Gold (~$80)
+
+### Software frameworks (free/open-source)
+* **Brian2 + Brian2GeNN**: Python-based neural simulator with GPU acceleration
+* **GeNN**: GPU-enhanced Neural Networks for maximum performance
+* **NEST Simulator**: Specialized for large-scale network simulations
+* **Visualization tools**: Matplotlib/Seaborn, NetworkX, Neo + Elephant
+
+### Free datasets and resources
+* **OpenNeuro**: Repository of brain imaging data
+* **Allen Brain Observatory**: Neural activity recordings in mouse visual cortex
+* **NeuroElectro**: Database of electrophysiological properties
+* **Neuronal Dynamics textbook**: With Brian2 exercises
+
+## Research communities and platforms
+
+### Online forums and communities
+* **Open Neuromorphic Community**: Focus on neuromorphic computing and brain-inspired devices
+* **Reddit communities**: r/Neuroscience (180k+ members), r/ComputationalNeuroscience
+* **Carboncopies Foundation**: Organization dedicated to advancing whole brain emulation
+
+### Conferences accepting independent research
+* **Foresight Neurotech Workshop**: Focused on brain emulation approaches
+* **Cognitive Computational Neuroscience (CCN)**: Annual conference with virtual options
+* **Organization for Computational Neurosciences (OCNS)**: Premier forum with workshops
+
+### Publishing platforms
+* **Preprint servers**: arXiv, bioRxiv, NeuroLibre
+* **Open Source Brain (OSB)**: For sharing and collaboratively developing models
+* **OpenNeuro**: Repository for sharing brain data
+
+### DIY tools for hands-on research
+* **OpenBCI**: Open-source brain-computer interface ($200-800)
+* **PiEEG**: EEG acquisition board for Raspberry Pi (~$250)
+* **icibici/Brain-Computer Interface**: Ultra low-cost BCI ($25)
+
+## Getting started: your brain emulation workbench
+
+For maximum impact as a software developer entering brain emulation research:
+
+1. **Start with Brian2**: Begin with simulating simple neuron models and small circuits using this Python framework. Its familiar syntax makes it accessible while still enabling serious research.
+
+2. **Build a computational setup**: Invest in an RTX 4060 GPU and 32GB RAM to enable medium-scale simulations that would be impossible on CPU alone.
+
+3. **Contribute to OpenWorm**: Join the c302 sub-project focusing on neural network modeling in C. elegans, leveraging your Python skills while working on the frontier of whole-organism emulation.
+
+4. **Share your work**: Join the Open Neuromorphic Community and post preprints to arXiv. Consider virtual conference attendance to connect with professional researchers.
+
+5. **Try hands-on experiments**: If you want a physical component, OpenBCI offers brain-computer interface hardware within your budget, allowing you to record and analyze actual brain signals.
+
+The gap between complete structural mapping and functional emulation represents the most exciting frontier in this field. Your software development skills are directly applicable to addressing this challenge, making this an ideal time to join the brain emulation revolution – no matter how small the brain.
