@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Decoding Whole Brain Emulation: The Quest to Replicate the Mind – AI Research Documentation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-7b1b06e26e1e2798ccde3208f86b5bbd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ai-powered-deepresearch/claude-full-brain-emu.html">AI Powered Deep Research Docs</a></li><li class="breadcrumb-item"><a href="../../ai-powered-deepresearch/gemini-biocybernetics-wbe/index.html">Gemini's Biocybernetics &amp; WBE</a></li><li class="breadcrumb-item"><a href="../../ai-powered-deepresearch/gemini-biocybernetics-wbe/wbe.html">WBE</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">AI Research Documentation</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">AI Powered Deep Research Docs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ai-powered-deepresearch/claude-full-brain-emu.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Claude Full Brain Emulator</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../ai-powered-deepresearch/gemini-biocybernetics-wbe/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gemini's Biocybernetics &amp; WBE</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ai-powered-deepresearch/gemini-biocybernetics-wbe/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ai-powered-deepresearch/gemini-biocybernetics-wbe/biocybernetics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Biocybernetics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ai-powered-deepresearch/gemini-biocybernetics-wbe/wbe.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">WBE</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ai-powered-deepresearch/gemini-biocybernetics-wbe/knowledge_expedition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Knowledge Expedition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ai-powered-deepresearch/gemini-biocybernetics-wbe/masters_prep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Masters Prep</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ai-powered-deepresearch/gemini-biocybernetics-wbe/conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conclusion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../ai-powered-deepresearch/gemini-biocybernetics-wbe/works_cited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Works Cited</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#a.-fundamental-goals-from-understanding-to-augmentation" id="toc-a.-fundamental-goals-from-understanding-to-augmentation" class="nav-link active" data-scroll-target="#a.-fundamental-goals-from-understanding-to-augmentation">A. Fundamental Goals: From Understanding to Augmentation</a></li>
+  <li><a href="#b.-the-wbe-pipeline-scanning-translation-simulation-and-embodiment" id="toc-b.-the-wbe-pipeline-scanning-translation-simulation-and-embodiment" class="nav-link" data-scroll-target="#b.-the-wbe-pipeline-scanning-translation-simulation-and-embodiment">B. The WBE Pipeline: Scanning, Translation, Simulation, and Embodiment</a></li>
+  <li><a href="#c.-technological-frontiers-substrates-scanning-and-simulation-scales" id="toc-c.-technological-frontiers-substrates-scanning-and-simulation-scales" class="nav-link" data-scroll-target="#c.-technological-frontiers-substrates-scanning-and-simulation-scales">C. Technological Frontiers: Substrates, Scanning, and Simulation Scales</a></li>
+  <li><a href="#d.-major-challenges-computational-demands-fidelity-data-and-validation" id="toc-d.-major-challenges-computational-demands-fidelity-data-and-validation" class="nav-link" data-scroll-target="#d.-major-challenges-computational-demands-fidelity-data-and-validation">D. Major Challenges: Computational Demands, Fidelity, Data, and Validation</a></li>
+  <li><a href="#e.-prominent-global-research-efforts-and-key-players" id="toc-e.-prominent-global-research-efforts-and-key-players" class="nav-link" data-scroll-target="#e.-prominent-global-research-efforts-and-key-players">E. Prominent Global Research Efforts and Key Players</a></li>
+  <li><a href="#f.-the-indispensable-dialogue-ethical-philosophical-and-societal-dimensions" id="toc-f.-the-indispensable-dialogue-ethical-philosophical-and-societal-dimensions" class="nav-link" data-scroll-target="#f.-the-indispensable-dialogue-ethical-philosophical-and-societal-dimensions">F. The Indispensable Dialogue: Ethical, Philosophical, and Societal Dimensions</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ai-powered-deepresearch/claude-full-brain-emu.html">AI Powered Deep Research Docs</a></li><li class="breadcrumb-item"><a href="../../ai-powered-deepresearch/gemini-biocybernetics-wbe/index.html">Gemini's Biocybernetics &amp; WBE</a></li><li class="breadcrumb-item"><a href="../../ai-powered-deepresearch/gemini-biocybernetics-wbe/wbe.html">WBE</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Decoding Whole Brain Emulation: The Quest to Replicate the Mind</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="a.-fundamental-goals-from-understanding-to-augmentation" class="level2">
+<h2 class="anchored" data-anchor-id="a.-fundamental-goals-from-understanding-to-augmentation">A. Fundamental Goals: From Understanding to Augmentation</h2>
+<p>Whole Brain Emulation (WBE) is driven by a spectrum of ambitious goals, ranging from fundamental scientific understanding to potentially transformative applications for human health and capabilities. * <strong>Understanding the Brain:</strong> At its core, WBE is a scientific endeavor aimed at achieving a profound understanding of how the brain functions.[3, 4, 7] This includes unraveling the mechanisms that give rise to complex cognitive phenomena such as thoughts, feelings, emotions, and consciousness itself.[4] By attempting to build a working model, researchers hope to test hypotheses about neural processing that are difficult or impossible to address through purely experimental means. * <strong>Treating Neurological and Psychiatric Conditions:</strong> A significant impetus for WBE research is its potential to revolutionize the treatment of a wide array of neurological and psychiatric disorders. These include conditions like Alzheimer’s disease, Parkinson’s disease, epilepsy, depression, and anxiety.[3, 4, 7] The development of personalized digital brain models, or “digital twins,” could allow researchers and clinicians to simulate disease progression, identify underlying pathological mechanisms, and test the efficacy of potential therapies in a virtual environment before applying them to patients.[30] * <strong>Transcendence and Augmentation:</strong> Beyond medical applications, WBE also touches upon more speculative but potentially far-reaching goals. These include the possibility of overcoming inherent biological limitations, such as enhancing cognitive abilities like processing speed, memory capacity, and attention span.[7] In its most futuristic conceptions, WBE could offer a form of “digital immortality” by allowing individuals to create backup copies of their emulated minds, thereby transcending physical mortality.[7]</p>
+</section>
+<section id="b.-the-wbe-pipeline-scanning-translation-simulation-and-embodiment" class="level2">
+<h2 class="anchored" data-anchor-id="b.-the-wbe-pipeline-scanning-translation-simulation-and-embodiment">B. The WBE Pipeline: Scanning, Translation, Simulation, and Embodiment</h2>
+<p>The realization of WBE is generally conceptualized as a multi-stage process, often described as a pipeline involving four critical steps [9, 31]:</p>
+<ol type="1">
+<li><strong>Scanning (Data Acquisition):</strong> This initial stage involves acquiring extraordinarily detailed, high-resolution data about the structure and, ideally, the activity of a specific biological brain. This includes mapping its complete neural connectivity (the connectome), the types and states of its neurons and synapses, and potentially molecular-level information.[4, 32] A major challenge and area of uncertainty is the development of advanced, minuscule probes capable of amassing comprehensive neural data <em>in vivo</em> (from a living brain) without causing significant damage.[9]</li>
+<li><strong>Translation (Interpretation/Modeling):</strong> The vast and complex raw data obtained from scanning must then be interpreted and translated into a computable model. This involves identifying individual neurons, tracing their connections, characterizing synaptic properties, and defining the parameters for the computational units that will represent these biological components in the simulation.[9, 33, 34] This “structure-to-function” translation is a critical and exceptionally difficult step, often cited as a primary bottleneck in WBE progress.[34]</li>
+<li><strong>Simulation (Execution):</strong> Once the brain model is constructed, it needs to be run on a suitable computational substrate. This involves executing the model to replicate the dynamic electrochemical activity of the original brain’s neurons and their interactions, ideally in real-time or even faster.[6, 8, 9, 31] This stage poses immense computational challenges in terms of processing power and memory.</li>
+<li><strong>Embodiment (Interaction):</strong> For a WBE to be more than just a passive simulation, and particularly if it is to exhibit properties like consciousness or a sense of self (according to some philosophical viewpoints), it likely needs to interact with an environment.[4] This involves providing the emulated brain with channels for receiving sensory input and producing motor output, potentially through virtual reality avatars, robotic bodies, or other sophisticated interfaces.[4, 7, 9, 31]</li>
+</ol>
+</section>
+<section id="c.-technological-frontiers-substrates-scanning-and-simulation-scales" class="level2">
+<h2 class="anchored" data-anchor-id="c.-technological-frontiers-substrates-scanning-and-simulation-scales">C. Technological Frontiers: Substrates, Scanning, and Simulation Scales</h2>
+<p>Advancing WBE requires pushing the boundaries of multiple technologies simultaneously.</p>
+<ul>
+<li><strong>Substrates for Emulation:</strong> Researchers are exploring various computational substrates:
+<ul>
+<li><strong>Digital Substrates:</strong> This is currently the most common approach, utilizing conventional digital computers, supercomputers, and specialized hardware like GPUs to run software-based models of neural networks.[8, 35] Projects like the Blue Brain Project heavily rely on this approach. Digital simulations offer high flexibility for model design and parameter exploration but face enormous challenges in achieving the necessary computational throughput and energy efficiency for human-scale WBE.[6, 8] Methodologies include using systems of partial differential equations to model the biophysics of neurons at the cellular level.[8]</li>
+<li><strong>Analog (Neuromorphic) Substrates:</strong> This approach involves designing custom hardware, often Very Large Scale Integration (VLSI) chips, where “silicon neurons” are implemented as analog electronic circuits that directly mimic the ion-channel dynamics and electrical properties of biological neurons.[8, 31] Neuromorphic systems promise greater power efficiency and speed for certain types of neural computations and may be better suited to recapitulating subtle but important biological phenomena like ephaptic coupling (electrical interactions between neurons not mediated by synapses).[8] Emerging technologies like memristors, carbon nanotubes, and organic nanowires are also being investigated for their potential in creating synaptic-like plasticity.[8]</li>
+<li><strong>Biological Substrates:</strong> A more nascent but intriguing approach involves using living biological material itself as a computational element. This includes research into cerebral organoids (three-dimensional cultures of brain cells derived from stem cells) and other 3D neural constructs that could potentially serve as “biological hardware” for emulation or for interfacing with emulations.[8, 18, 36] This path faces significant challenges related to the stability, scalability, and ethical implications of using and integrating such living constructs.</li>
+</ul></li>
+<li><strong>Scanning Technologies and Connectomics:</strong> The ability to map brain structure with sufficient detail is fundamental.
+<ul>
+<li><strong>Electron Microscopy (EM):</strong> Currently offers the highest spatial resolution (nanoscale), capable of visualizing individual synapses, which is crucial for detailed connectomic reconstruction.[32] EM has been instrumental in mapping the connectomes of smaller organisms like the fruit fly.[19, 37] However, EM is typically slow, data-intensive, and often requires destructive sectioning of brain tissue.</li>
+<li><strong>Expansion Microscopy (ExM):</strong> A newer technique that physically expands tissue samples, allowing for higher effective resolution when imaged with conventional light microscopy. ExM is compatible with molecular labeling techniques, offering the potential to combine structural and molecular information.[32] Challenges include ensuring uniform expansion and developing methods for sectioning large expanded tissues.</li>
+<li><strong>High-Resolution Magnetic Resonance Imaging (MRI):</strong> While invaluable for non-invasive whole-brain imaging in humans, current MRI technology lacks the spatial resolution required to map individual synapses or even detailed neuronal morphology necessary for WBE.[9]</li>
+<li><strong>Connectomics:</strong> The broader field of connectomics, dedicated to creating comprehensive maps of neural connections, is a cornerstone of WBE efforts.[7, 19, 32, 37, 38, 39, 40, 41] These maps provide the structural blueprint for building brain models.</li>
+</ul></li>
+<li><strong>Simulation Scales and Complexity:</strong> The brain’s complexity necessitates simulations of varying scales and levels of detail.
+<ul>
+<li><strong>Scale:</strong> Research efforts range from modeling relatively small neural circuits, such as a single cortical column (a key focus of the early Blue Brain Project, involving thousands of neurons [8]), to simulating entire rodent brains, with the ultimate goal of emulating the human brain, which contains approximately 86 billion neurons and orders of magnitude more synapses.[6, 35, 42]</li>
+<li><strong>Level of Detail (Abstraction):</strong> WBE models can vary significantly in their level of biophysical detail. Estimates of computational requirements escalate dramatically as models incorporate more intricate biological mechanisms, from abstract analog network population models to models simulating the electrophysiology of individual neurons with multiple compartments, and further to models including metabolic pathways (metabolome), protein interactions (proteome), and even the stochastic behavior of single molecules.[6] Each increase in detail imposes exponentially greater demands on computational power and memory.</li>
+</ul></li>
+</ul>
+<p>The following table summarizes the key stages of the WBE pipeline, the technologies and substrates involved, and their primary associated challenges.</p>
+<p><strong>Table 2: WBE Technological Landscape: Approaches, Substrates, and Key Challenges</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">WBE Stage</th>
+<th style="text-align: left;">Key Technologies/Substrates</th>
+<th style="text-align: left;">Associated Challenges</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Scanning</strong></td>
+<td style="text-align: left;">Electron Microscopy (EM), Expansion Microscopy (ExM), Advanced Light Microscopy, (Future) <em>In vivo</em> nano-probes</td>
+<td style="text-align: left;">Resolution limits, Speed of acquisition, Data volume, Tissue distortion/damage, Destructive nature (for some EM), Combining structural &amp; functional data</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Translation</strong></td>
+<td style="text-align: left;">Automated image segmentation algorithms, Machine learning for parameter extraction, Connectomic reconstruction software, Neuroinformatics databases</td>
+<td style="text-align: left;">Accuracy of segmentation, Structure-to-function mapping, Parameter estimation for diverse neuron/synapse types, Handling massive datasets, Validation of models</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Simulation</strong></td>
+<td style="text-align: left;"><strong>Digital:</strong> Supercomputers, GPUs, CPUs. Software: NEURON, Arbor, The Virtual Brain, Custom simulation code. <br> <strong>Analog:</strong> Neuromorphic chips (VLSI), Memristors, Nanowires. <br> <strong>Biological:</strong> Cerebral organoids, 3D neural cultures.</td>
+<td style="text-align: left;"><strong>Digital:</strong> Computational power, Memory bandwidth, Energy efficiency, Real-time performance, Scalability. <br> <strong>Analog:</strong> Scalability, Programmability, Interconnectivity, Replicating biological plasticity. <br> <strong>Biological:</strong> Stability, Controllability, Ethical concerns, Integration with non-biological systems.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Embodiment</strong></td>
+<td style="text-align: left;">Virtual Reality (VR) environments, Robotic systems, Advanced sensorimotor interfaces</td>
+<td style="text-align: left;">Creating rich and responsive environments, Bidirectional information flow, Sense of presence/agency, Computational cost of environment simulation</td>
+</tr>
+</tbody>
+</table>
+<p>This table provides a structured understanding of the multifaceted technological endeavor that is WBE, highlighting where different research efforts contribute and where major hurdles remain.</p>
+</section>
+<section id="d.-major-challenges-computational-demands-fidelity-data-and-validation" class="level2">
+<h2 class="anchored" data-anchor-id="d.-major-challenges-computational-demands-fidelity-data-and-validation">D. Major Challenges: Computational Demands, Fidelity, Data, and Validation</h2>
+<p>The path to achieving WBE is fraught with formidable challenges:</p>
+<ul>
+<li><strong>Computational Power and Efficiency:</strong> Simulating the entire human brain, even at a simplified level, in real-time is currently beyond the capacity of even the most powerful supercomputers.[6, 8, 31, 35, 43] A one-second simulation of a small fraction of a mouse cortical column (22 million neurons) took an IBM Blue Gene supercomputer over an hour.[8] The energy consumption of such simulations on current hardware is also a major concern.[31]</li>
+<li><strong>Achieving and Defining Fidelity:</strong> A central challenge is ensuring that the emulation accurately replicates the behavior, internal states, and functional properties of the original biological brain. This is the problem of “fidelity”.[38] Defining what constitutes sufficient fidelity is complex: should the emulation match behavior, internal neural activity patterns, or some deeper level of functional organization? Measuring this fidelity is also difficult, as it requires comprehensive benchmarks and comparisons against the original system, which may itself not be fully understood.[38] The level of detail required for an accurate simulation that captures essential brain functions (and potentially consciousness) is still a subject of debate.[5]</li>
+<li><strong>Data Acquisition, Management, and Translation:</strong> Obtaining complete, error-free, high-resolution structural and functional data from an entire brain is an immense undertaking.[9, 32] The sheer volume of data generated (petabytes to exabytes) poses significant storage and processing challenges.[32] Furthermore, the “translation” of this raw data into a well-parameterized computational model—the structure-to-function problem—is a major bottleneck where automated, accurate methods are still under development.[34]</li>
+<li><strong>Validation and Ground-Truthing:</strong> How can researchers be confident that a WBE is working correctly and truly emulating the target brain? This requires rigorous validation strategies, including comparing the WBE’s responses to a wide range of stimuli against those of the original biological system or against well-established neuroscientific knowledge.[38] The Carboncopies Foundation’s “Brain Emulation Challenge” is an initiative aimed at tackling this by using synthetically generated virtual brain data with known ground truth, allowing for precise evaluation of translation and simulation methods.[34, 44]</li>
+<li><strong>Software and Algorithmic Complexity:</strong> Developing the software infrastructure for WBE is a monumental task. This includes creating highly scalable simulation algorithms, efficient data structures for representing vast neural networks, tools for managing and analyzing exascale datasets, and frameworks for integrating models across different scales.[34, 43, 45] Memory bottlenecks and efficient inter-processor communication in parallel computing environments are also significant hurdles.[43, 46]</li>
+</ul>
+<p>While computational hardware continues to advance (often cited in the context of Moore’s Law [6, 9]), a critical shift in focus is occurring. The primary bottlenecks are increasingly recognized as lying in the “software” and “data” domains: acquiring sufficiently detailed and accurate brain data, interpreting this data to construct valid models, and developing robust methods to validate these complex emulations. For software engineers, this shift highlights the growing centrality of their skills in data science, machine learning (e.g., for automated image segmentation in connectomics or for model parameter estimation [33]), large-scale data management, and the creation of sophisticated validation frameworks. The challenge is evolving from merely “can we run a simulation of X billion neurons?” to “do we know <em>precisely what</em> to simulate for those X billion neurons, and <em>how</em> can we rigorously verify that our simulation is a faithful representation of the biological original?” This underscores a profound need for software engineers who can operate effectively at the complex interface between neuroscience data and advanced computational modeling.</p>
+</section>
+<section id="e.-prominent-global-research-efforts-and-key-players" class="level2">
+<h2 class="anchored" data-anchor-id="e.-prominent-global-research-efforts-and-key-players">E. Prominent Global Research Efforts and Key Players</h2>
+<p>The quest for WBE and advanced brain understanding is a global endeavor, characterized by large-scale collaborative projects and dedicated research institutions:</p>
+<ul>
+<li><strong>Blue Brain Project / Open Brain Institute (OBI):</strong> Initiated at EPFL (École Polytechnique Fédérale de Lausanne) in Switzerland, the Blue Brain Project has focused on creating detailed digital reconstructions and simulations of rodent brain tissue, particularly cortical columns.[8, 35] This project has recently evolved into the Open Brain Institute (OBI), a non-profit organization aiming to provide the global neuroscience community with open access to the simulation tools, data, and AI-powered virtual laboratories developed by Blue Brain.[46, 47, 48] OBI’s vision is to establish simulation neuroscience as a fourth pillar alongside experimental, theoretical, and clinical neuroscience.</li>
+<li><strong>Human Brain Project (HBP) / EBRAINS:</strong> A major European Union flagship project, the HBP aimed to create a comprehensive ICT-based research infrastructure for brain research. It officially concluded in 2023, with its legacy and tools now largely integrated into the EBRAINS research infrastructure.[18, 30, 46, 49, 50, 51] EBRAINS offers a wide range of resources, including brain atlases, large datasets, modeling and simulation tools (like The Virtual Brain for whole-brain modeling [30]), and access to high-performance computing and neuromorphic computing platforms. It supports research into digital twin approaches for the brain.</li>
+<li><strong>BRAIN Initiative (Brain Research Through Advancing Innovative Neurotechnologies®):</strong> A US-led public-private collaboration, the NIH BRAIN Initiative is focused on accelerating the development and application of innovative technologies to revolutionize our understanding of the human brain.[19, 37, 39, 49] Key goals include mapping brain circuits at multiple scales (connectomics), developing tools for large-scale monitoring and manipulation of neural activity, and understanding how brain activity relates to behavior. Recent breakthroughs under this initiative include the highest-resolution 3D reconstruction of human brain tissue to date and the complete connectome of the adult fruit fly brain.[19]</li>
+<li><strong>Carboncopies Foundation:</strong> A non-profit organization dedicated to advancing research and development towards WBE.[7, 34, 42, 52] They focus on creating WBE roadmaps, developing ethical frameworks, and tackling practical challenges through initiatives like the “Brain Emulation Challenge” (aimed at functionalizing brain data) and the “BrainGenix” software platform (designed to support WBE research). Dr.&nbsp;Randal Koene is a prominent figure associated with Carboncopies.[42, 53]</li>
+<li><strong>OpenWorm Project:</strong> An open-source, collaborative global project aiming to build the first complete digital simulation of a simple organism, the nematode worm <em>Caenorhabditis elegans</em>.[54, 55] This project serves as a testbed for developing the methodologies and tools needed for more complex emulations, including the Geppetto multi-algorithm simulation platform.</li>
+<li><strong>Allen Institute for Brain Science / Allen Institute for Neural Dynamics:</strong> These institutes have made significant contributions to creating large-scale, open-access resources for neuroscience, including detailed brain atlases (e.g., the Allen Mouse Brain Common Coordinate Framework), connectomic datasets, and platforms for studying neural activity and its relation to behavior.[41] Their work is foundational for many modeling and WBE efforts.</li>
+<li><strong>Whole Brain Architecture Initiative (WBAI):</strong> This initiative promotes a software-based approach to achieving Artificial General Intelligence (AGI) by creating a cognitive architecture that models the functions of different brain components (e.g., cerebellum, basal ganglia, neocortex) often using machine learning modules.[33, 56] While focused on AGI, its brain-inspired approach has relevance to WBE.</li>
+</ul>
+</section>
+<section id="f.-the-indispensable-dialogue-ethical-philosophical-and-societal-dimensions" class="level2">
+<h2 class="anchored" data-anchor-id="f.-the-indispensable-dialogue-ethical-philosophical-and-societal-dimensions">F. The Indispensable Dialogue: Ethical, Philosophical, and Societal Dimensions</h2>
+<p>The prospect of WBE, particularly of human brains, forces a confrontation with some of the most profound ethical, philosophical, and societal questions humanity has faced. These are not peripheral concerns but are integral to the responsible development and potential deployment of WBE technology.</p>
+<ul>
+<li><strong>Consciousness, Self, and Personal Identity:</strong> WBE directly challenges our understanding of what it means to be human. Can a digital simulation of a brain truly be conscious, possess subjective experience, or have a sense of self?.[3, 4, 5, 7, 34, 36, 38, 45, 53] If a person’s brain is emulated, is the emulation that same person? How is personal identity affected by the possibility of multiple copies, or modifications to the emulated mind?.[4, 34] Some philosophical arguments suggest that if functional equivalence to a biological brain is achieved, consciousness would also be present [4], while others remain deeply skeptical or argue it’s impossible for a purely computational system.[5]</li>
+<li><strong>Moral Status of Emulations:</strong> If WBEs can achieve consciousness and sentience, what moral status do they possess? Would they have rights akin to human rights? Should they be protected from suffering?.[34, 36, 38] These questions become particularly acute if emulations can experience pain, distress, or existential angst.</li>
+<li><strong>Societal Impact and Governance:</strong> The widespread availability of WBE could lead to radical societal transformations. Economically, the ability to create multiple copies of highly skilled emulated workers could lead to unprecedented productivity but also mass unemployment and exacerbate inequalities.[5] Access to superior or enhanced emulations could create new social strata.[38] There are also concerns about misuse, such as the creation of emulations for malicious purposes, or the existential risks posed by emulated minds being vulnerable to digital threats like malware or unauthorized reprogramming.[7]</li>
+<li><strong>Need for Ethical Frameworks and Neuro-rights:</strong> There is a growing consensus on the necessity of proactively developing robust ethical guidelines and governance structures for WBE research and its potential applications.[4, 7, 34, 36, 38, 53] Organizations like the Carboncopies Foundation have dedicated projects to creating such ethics frameworks, focusing on principles of human dignity, scientific integrity, and global justice.[34] Workshops, such as the one hosted by the Mimir Center, bring together philosophers, neuroscientists, and ethicists to deliberate on these complex issues.[53] The discussion is also expanding to include the concept of “neuro-rights,” which aim to protect mental privacy, identity, and free will in an age of increasingly powerful neurotechnologies.[49]</li>
+</ul>
+<p>The intricate relationship between the technical pursuit of high-fidelity WBE, the philosophical inquiry into whether such fidelity can engender consciousness, and the ethical imperatives that arise if consciousness is indeed possible, forms a complex “trilemma.” Progress in the technology of WBE cannot be isolated from these deeper considerations. Technical benchmarks for what constitutes a “successful” emulation, such as passing a behavioral Turing test, might fall short of addressing profound ethical concerns if the subjective experience of the emulated mind remains an unknown. This suggests a parallel need for research into reliable “consciousness markers” or methods to assess subjective states in artificial systems. Software engineers involved in WBE will inevitably encounter these questions, not merely as abstract philosophical debates, but as factors that could influence design choices, research priorities (e.g., determining which biological details are critical to model, potentially for ethical reasons concerning well-being as much as for functional accuracy), and the overall trajectory of the field.</p>
+<p><em>(Note: References [3-56] would ideally be managed with a bibliography file.)</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
