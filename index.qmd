@@ -1,7 +1,13 @@
 ---
-title: "uploaded-intelligence"
+title: "What's this for?"
 ---
 
-This is a Quarto website.
+This is my personal research website where I put my notes on neuromorphic computing, brain emulation, and other related topics. Basically I watched [Pantheon](https://www.imdb.com/title/tt11680642/) and thought it was really cool so I want to upload myself and becoming smart seems like a good start.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+I'm a software engineer with a academic background in Computer Science and Data Science, so who knows if this will go anywhere - but I'm pretty sure that's the point of researching things (to learn).
+
+### Disclaimer
+Since AI is so big right now, I'm going to be using it a lot in research, but to keep my thoughts separate from AI's thoughts, I'll be keeping my research separate from AI's research.
+
+### Contact
+If you want to contact me, you can find me on [X](https://x.com/sebastiandunn14) or [LinkedIn](https://www.linkedin.com/in/sebastian-dunn/).fdfd

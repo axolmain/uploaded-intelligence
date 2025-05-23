@@ -13,8 +13,6 @@ website:
     contents:
       - text: "Introduction"
         href: index.qmd
-      - text: "About"
-        href: about.qmd
       - section: "AI Powered Deep Research Docs"
         contents:
           - text: "Claude Full Brain Emulator"
@@ -36,6 +34,10 @@ website:
                 href: ai-powered-deepresearch/gemini-biocybernetics-wbe/conclusion.qmd
               - text: "Works Cited"
                 href: ai-powered-deepresearch/gemini-biocybernetics-wbe/works_cited.qmd
+      - section: "Neuromorphic Computing"
+        contents:
+          - text: "Neuromorphic Computing"
+            href: biocomputing/neuromorphic_computing.qmd
 
 format:
   html:

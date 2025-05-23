@@ -188,9 +188,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "uploaded-intelligence",
+    "title": "What’s this for?",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.",
+    "text": "This is my personal research website where I put my notes on neuromorphic computing, brain emulation, and other related topics. Basically I watched Pantheon and thought it was really cool so I want to upload myself and becoming smart seems like a good start.\nI’m a software engineer with a academic background in Computer Science and Data Science, so who knows if this will go anywhere - but I’m pretty sure that’s the point of researching things (to learn).\n\nDisclaimer\nSince AI is so big right now, I’m going to be using it a lot in research, but to keep my thoughts separate from AI’s thoughts, I’ll be keeping my research separate from AI’s research.\n\n\nContact\nIf you want to contact me, you can find me on X or LinkedIn.fdfd",
     "crumbs": [
       "Introduction"
     ]
@@ -450,6 +450,72 @@
       "AI Powered Deep Research Docs",
       "Gemini's Biocybernetics & WBE",
       "Knowledge Expedition"
+    ]
+  },
+  {
+    "objectID": "biocomputing/neuromorphic_computing.html",
+    "href": "biocomputing/neuromorphic_computing.html",
+    "title": "Neuromorphic Computing",
+    "section": "",
+    "text": "Neuromorphic computing is a field of computing that is inspired by the brain. It is a type of computing that is designed to mimic the brain’s structure and function.\nBut first, to understand neuromorphic computing, we first need to understand the brain.\n\n\nThe brain contains billions of neurons. Neurons are the basic unit of the brain which act like tiny messengers to pass information around your brain and body. To send information around, they have to send electrical (and chemical) signals to other neurons through synapses (the connections between neurons).\n\n\nBelow is an interactive 3D visualization that demonstrates how neurons activate and transmit signals:\n\n\n\n\n\n\nSo thinking about the brain, the way that our brains interpret the world is essentially an event-driven system. We have sensory neurons that detect changes in the world and send signals to the brain. The brain then processes these signals and sends out signals to the body to move or do something.\n\n\n\nNeuromorphic computing aims to take these principles of how the brain works, and recreate them in computer chips using what’s called Spiking Neural Networks (SNNs). Think of these as artificial versions of your brain’s neural network.\nJust like real neurons, these artificial neurons have their own individual “stats” - each one has:\n\nA charge level (energy charge)\nA threshold (the point where it decides to “fire”)\nA delay (how long it takes to respond)\n\nThe connections between these artificial neurons (the artificial synapses) also have their own characteristics:\n\nWeight values (how strong the connection is)\nDelays (how long signals take to travel)\n\nThe reason this is cool, is that these artificial synapses are built using transistors which can learn/adapt over time, just like your brain does when you practice something new (this process is a LOT more energy efficient than traditional computers too which is cool).\n\n\n\nUnlike traditional computers that process everything in lockstep, neuromorphic systems care deeply about when things happen. Thinking about it like brain memory, an artificial neuron slowly builds up its charge as signals arrive. When that charge finally hits the neuron’s threshold - spike! - it fires and sends its signal racing through the network to other neurons. But if the charge never reaches that threshold, it gradually fades away, just like how you might forget something if it wasn’t important enough to stick.\nThis creates an event-driven system where things only happen when they need to - neurons only fire when they have something important to say, not on some rigid schedule like traditional computers.\n\n\n\nThis brain-inspired approach allows neuromorphic computers to process information more like humans do - efficiently handling the flood of sensory data from the real world, adapting and learning as they go, and using far less energy than conventional computers trying to do the same tasks.",
+    "crumbs": [
+      "Neuromorphic Computing",
+      "Neuromorphic Computing"
+    ]
+  },
+  {
+    "objectID": "biocomputing/neuromorphic_computing.html#the-brain",
+    "href": "biocomputing/neuromorphic_computing.html#the-brain",
+    "title": "Neuromorphic Computing",
+    "section": "",
+    "text": "The brain contains billions of neurons. Neurons are the basic unit of the brain which act like tiny messengers to pass information around your brain and body. To send information around, they have to send electrical (and chemical) signals to other neurons through synapses (the connections between neurons).\n\n\nBelow is an interactive 3D visualization that demonstrates how neurons activate and transmit signals:",
+    "crumbs": [
+      "Neuromorphic Computing",
+      "Neuromorphic Computing"
+    ]
+  },
+  {
+    "objectID": "biocomputing/neuromorphic_computing.html#continuing-with-neuromorphic-computing",
+    "href": "biocomputing/neuromorphic_computing.html#continuing-with-neuromorphic-computing",
+    "title": "Neuromorphic Computing",
+    "section": "",
+    "text": "So thinking about the brain, the way that our brains interpret the world is essentially an event-driven system. We have sensory neurons that detect changes in the world and send signals to the brain. The brain then processes these signals and sends out signals to the body to move or do something.",
+    "crumbs": [
+      "Neuromorphic Computing",
+      "Neuromorphic Computing"
+    ]
+  },
+  {
+    "objectID": "biocomputing/neuromorphic_computing.html#how-neuromorphic-computing-mimics-the-brain",
+    "href": "biocomputing/neuromorphic_computing.html#how-neuromorphic-computing-mimics-the-brain",
+    "title": "Neuromorphic Computing",
+    "section": "",
+    "text": "Neuromorphic computing aims to take these principles of how the brain works, and recreate them in computer chips using what’s called Spiking Neural Networks (SNNs). Think of these as artificial versions of your brain’s neural network.\nJust like real neurons, these artificial neurons have their own individual “stats” - each one has:\n\nA charge level (energy charge)\nA threshold (the point where it decides to “fire”)\nA delay (how long it takes to respond)\n\nThe connections between these artificial neurons (the artificial synapses) also have their own characteristics:\n\nWeight values (how strong the connection is)\nDelays (how long signals take to travel)\n\nThe reason this is cool, is that these artificial synapses are built using transistors which can learn/adapt over time, just like your brain does when you practice something new (this process is a LOT more energy efficient than traditional computers too which is cool).",
+    "crumbs": [
+      "Neuromorphic Computing",
+      "Neuromorphic Computing"
+    ]
+  },
+  {
+    "objectID": "biocomputing/neuromorphic_computing.html#the-key-difference-timing-matters",
+    "href": "biocomputing/neuromorphic_computing.html#the-key-difference-timing-matters",
+    "title": "Neuromorphic Computing",
+    "section": "",
+    "text": "Unlike traditional computers that process everything in lockstep, neuromorphic systems care deeply about when things happen. Thinking about it like brain memory, an artificial neuron slowly builds up its charge as signals arrive. When that charge finally hits the neuron’s threshold - spike! - it fires and sends its signal racing through the network to other neurons. But if the charge never reaches that threshold, it gradually fades away, just like how you might forget something if it wasn’t important enough to stick.\nThis creates an event-driven system where things only happen when they need to - neurons only fire when they have something important to say, not on some rigid schedule like traditional computers.",
+    "crumbs": [
+      "Neuromorphic Computing",
+      "Neuromorphic Computing"
+    ]
+  },
+  {
+    "objectID": "biocomputing/neuromorphic_computing.html#why-this-matters",
+    "href": "biocomputing/neuromorphic_computing.html#why-this-matters",
+    "title": "Neuromorphic Computing",
+    "section": "",
+    "text": "This brain-inspired approach allows neuromorphic computers to process information more like humans do - efficiently handling the flood of sensory data from the real world, adapting and learning as they go, and using far less energy than conventional computers trying to do the same tasks.",
+    "crumbs": [
+      "Neuromorphic Computing",
+      "Neuromorphic Computing"
     ]
   }
 ]

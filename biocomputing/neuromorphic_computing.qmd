@@ -1,0 +1,52 @@
+---
+title: "Neuromorphic Computing"
+---
+
+# Neuromorphic Computing
+
+Neuromorphic computing is a field of computing that is inspired by the brain. It is a type of computing that is designed to mimic the brain's structure and function.
+
+But first, to understand neuromorphic computing, we first need to understand the brain.
+
+## The Brain
+
+The brain contains billions of neurons. Neurons are the basic unit of the brain which act like tiny messengers to pass information around your brain and body. To send information around, they have to send electrical (and chemical) signals to other neurons through synapses (the connections between neurons).
+
+### Neural Signal Propagation Visualization
+
+Below is an interactive 3D visualization that demonstrates how neurons activate and transmit signals:
+
+```{=html}
+<iframe src="neuron-viz.html" width="100%" height="600px" frameborder="0"></iframe>
+
+## Continuing with Neuromorphic Computing
+
+So thinking about the brain, the way that our brains interpret the world is essentially an event-driven system. We have sensory neurons that detect changes in the world and send signals to the brain. The brain then processes these signals and sends out signals to the body to move or do something. 
+
+## How Neuromorphic Computing Mimics the Brain
+
+Neuromorphic computing aims to take these principles of how the brain works, and recreate them in computer chips using what's called [Spiking Neural Networks (SNNs)](https://pmc.ncbi.nlm.nih.gov/articles/PMC9313413/). Think of these as artificial versions of your brain's neural network.
+
+Just like real neurons, these artificial neurons have their own individual "stats" - each one has:
+
+- A **charge** level (energy charge)
+- A **threshold** (the point where it decides to "fire")
+- A **delay** (how long it takes to respond)
+
+The connections between these artificial neurons (the artificial synapses) also have their own characteristics:
+
+- **Weight values** (how strong the connection is)
+- **Delays** (how long signals take to travel)
+
+The reason this is cool, is that these artificial synapses are built using transistors which can learn/adapt over time, just like your brain does when you practice something new (this process is a LOT more energy efficient than traditional computers too which is cool).
+
+## The Key Difference: Timing Matters
+
+Unlike traditional computers that process everything in lockstep, neuromorphic systems care deeply about **when** things happen. 
+Thinking about it like brain memory, an artificial neuron slowly builds up its charge as signals arrive. When that charge finally hits the neuron's threshold - *spike!* - it fires and sends its signal racing through the network to other neurons. But if the charge never reaches that threshold, it gradually fades away, just like how you might forget something if it wasn't important enough to stick.
+
+This creates an event-driven system where things only happen when they need to - neurons only fire when they have something important to say, not on some rigid schedule like traditional computers.
+
+## Why This Matters
+
+This brain-inspired approach allows neuromorphic computers to process information more like humans do - efficiently handling the flood of sensory data from the real world, adapting and learning as they go, and using far less energy than conventional computers trying to do the same tasks.

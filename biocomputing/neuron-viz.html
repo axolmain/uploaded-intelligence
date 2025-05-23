@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Neural Network Visualization</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+            font-family: Arial, sans-serif;
+        }
+        
+        #canvas-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+        
+        #info-panel {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            max-width: 300px;
+            font-size: 14px;
+            z-index: 100;
+        }
+        
+        #controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            z-index: 100;
+        }
+        
+        button {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        
+        button:hover {
+            background: #3a80d2;
+        }
+        
+        .slider-container {
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slider-container label {
+            margin-bottom: 5px;
+        }
+        
+        .slider {
+            width: 100%;
+        }
+        
+        h3 {
+            margin-top: 0;
+            color: #4a90e2;
+        }
+        
+        #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            z-index: 1000;
+        }
+        
+        .spinner {
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 5px solid #4a90e2;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-right: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .legend {
+            margin-top: 15px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <div class="spinner"></div>
+        <div>Loading Neural Network...</div>
+    </div>
+    
+    <div id="canvas-container"></div>
+    
+    <div id="info-panel">
+        <h3>3D Neural Network</h3>
+        <p>This visualization shows a realistic 3D neural network with action potentials propagating between neurons.</p>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #8844ff;"></div>
+                <span>Resting Neuron</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #ff5252;"></div>
+                <span>Firing Neuron</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #25a09b;"></div>
+                <span>Inhibitory Neuron</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #ff5252; height: 4px;"></div>
+                <span>Active Synapse</span>
+            </div>
+        </div>
+        
+        <p><strong>Tip:</strong> Click and drag to rotate, scroll to zoom.</p>
+    </div>
+    
+    <div id="controls">
+        <h3>Simulation Controls</h3>
+        <button id="startBtn">Start Simulation</button>
+        <button id="stopBtn">Stop Simulation</button>
+        <button id="resetBtn">Reset</button>
+        
+        <div class="slider-container">
+            <label for="spontaneousRate">Spontaneous Firing: <span id="spontaneousRateValue">30%</span></label>
+            <input type="range" id="spontaneousRate" class="slider" min="0" max="100" value="30">
+        </div>
+        
+        <div class="slider-container">
+            <label for="inhibitionChance">Inhibition Chance: <span id="inhibitionChanceValue">20%</span></label>
+            <input type="range" id="inhibitionChance" class="slider" min="0" max="100" value="20">
+        </div>
+        
+        <div class="slider-container">
+            <label for="signalSpeed">Signal Speed: <span id="signalSpeedValue">Normal</span></label>
+            <input type="range" id="signalSpeed" class="slider" min="1" max="5" value="3">
+        </div>
+        
+        <div class="slider-container">
+            <label for="neuronsCount">Network Density: <span id="neuronsCountValue">Medium</span></label>
+            <input type="range" id="neuronsCount" class="slider" min="20" max="100" value="50">
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <script>
+        // Global variables
+        let scene, camera, renderer;
+        let neurons = [];
+        let synapses = [];
+        let signals = [];
+        let simulationRunning = false;
+        let simulationInterval;
+        
+        // Simulation parameters
+        let spontaneousRate = 30;
+        let inhibitionChance = 20;
+        let signalSpeed = 3;
+        let neuronsCount = 50;
+        
+        // UI elements
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const spontaneousRateSlider = document.getElementById('spontaneousRate');
+        const spontaneousRateValue = document.getElementById('spontaneousRateValue');
+        const inhibitionChanceSlider = document.getElementById('inhibitionChance');
+        const inhibitionChanceValue = document.getElementById('inhibitionChanceValue');
+        const signalSpeedSlider = document.getElementById('signalSpeed');
+        const signalSpeedValue = document.getElementById('signalSpeedValue');
+        const neuronsCountSlider = document.getElementById('neuronsCount');
+        const neuronsCountValue = document.getElementById('neuronsCountValue');
+        const loading = document.getElementById('loading');
+        
+        // Material definitions for reuse
+        const neuronMaterial = new THREE.MeshPhongMaterial({ 
+            color: 0x8844ff,
+            emissive: 0x2233cc,
+            shininess: 70,
+            transparent: true,
+            opacity: 0.9
+        });
+        
+        const inhibitoryNeuronMaterial = new THREE.MeshPhongMaterial({ 
+            color: 0x25a09b,
+            emissive: 0x116661,
+            shininess: 70,
+            transparent: true,
+            opacity: 0.9
+        });
+        
+        const firingNeuronMaterial = new THREE.MeshPhongMaterial({ 
+            color: 0xff5252,
+            emissive: 0xdd3333,
+            shininess: 90,
+            transparent: true,
+            opacity: 1.0
+        });
+        
+        const synapseMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0x666688,
+            transparent: true,
+            opacity: 0.2
+        });
+        
+        const firingExcitatorySignalMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0xff5252,
+            transparent: true,
+            opacity: 0.9
+        });
+        
+        const firingInhibitorySignalMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0x25a09b,
+            transparent: true,
+            opacity: 0.9
+        });
+        
+        const firingExcitatorySynapseMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0xff5252,
+            transparent: true,
+            opacity: 0.6
+        });
+        
+        const firingInhibitorySynapseMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0x25a09b,
+            transparent: true,
+            opacity: 0.6
+        });
+        
+        // Initialize everything
+        window.addEventListener('load', init);
+        
+        function init() {
+            // Set up ThreeJS scene
+            setupScene();
+            
+            // Create the neural network
+            createNeuralNetwork();
+            
+            // Set up event listeners
+            setupEventListeners();
+            
+            // Start animation loop
+            animate();
+            
+            // Hide loading screen
+            loading.style.display = 'none';
+        }
+        
+        function setupScene() {
+            // Create scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x000033);
+            
+            // Create camera
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 2000);
+            camera.position.z = 200;
+            
+            // Create renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+            
+            // Add lights
+            const ambientLight = new THREE.AmbientLight(0x404040, 2);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+            directionalLight.position.set(1, 1, 1);
+            scene.add(directionalLight);
+            
+            const pointLight = new THREE.PointLight(0x8888ff, 2, 300);
+            pointLight.position.set(0, 0, 50);
+            scene.add(pointLight);
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+                renderer.setSize(width, height);
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+            });
+            
+            // Basic orbit controls
+            let isDragging = false;
+            let previousMousePosition = { x: 0, y: 0 };
+            
+            renderer.domElement.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            });
+            
+            renderer.domElement.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    const deltaMove = {
+                        x: e.clientX - previousMousePosition.x,
+                        y: e.clientY - previousMousePosition.y
+                    };
+                    
+                    // Rotate the scene based on mouse movement
+                    const rotationSpeed = 0.005;
+                    scene.rotation.y += deltaMove.x * rotationSpeed;
+                    scene.rotation.x += deltaMove.y * rotationSpeed;
+                    
+                    previousMousePosition = { x: e.clientX, y: e.clientY };
+                }
+            });
+            
+            renderer.domElement.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+            
+            renderer.domElement.addEventListener('wheel', (e) => {
+                // Zoom in/out with mouse wheel
+                e.preventDefault();
+                const zoomSpeed = 0.1;
+                camera.position.z += e.deltaY * zoomSpeed;
+                // Clamp zoom limits
+                camera.position.z = Math.max(50, Math.min(500, camera.position.z));
+            });
+        }
+        
+        function createNeuralNetwork() {
+            // Clear previous network
+            clearNeuralNetwork();
+            
+            // Create neurons
+            const neuronGeometry = new THREE.SphereGeometry(3, 16, 16);
+            
+            for (let i = 0; i < neuronsCount; i++) {
+                // Random position in a spherical volume
+                const radius = 80;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(2 * Math.random() - 1);
+                const x = radius * Math.sin(phi) * Math.cos(theta);
+                const y = radius * Math.sin(phi) * Math.sin(theta);
+                const z = radius * Math.cos(phi);
+                
+                // Determine if this neuron is inhibitory (about 20%)
+                const isInhibitory = Math.random() < 0.2;
+                
+                // Create neuron mesh
+                const material = isInhibitory ? inhibitoryNeuronMaterial.clone() : neuronMaterial.clone();
+                const neuron = new THREE.Mesh(neuronGeometry, material);
+                neuron.position.set(x, y, z);
+                
+                // Random size variation
+                const scale = 0.7 + Math.random() * 0.6;
+                neuron.scale.set(scale, scale, scale);
+                
+                // Add to scene
+                scene.add(neuron);
+                
+                // Store neuron data
+                neurons.push({
+                    mesh: neuron,
+                    id: i,
+                    position: new THREE.Vector3(x, y, z),
+                    connections: [],
+                    state: 'resting', // resting, excited, firing, refractory
+                    excitation: 0,
+                    threshold: 70 + Math.random() * 30,
+                    lastFired: 0,
+                    isInhibitory: isInhibitory,
+                    refractoryPeriod: 1000 + Math.random() * 2000,
+                    scale: scale
+                });
+            }
+            
+            // Create connections between neurons
+            createSynapses();
+            
+            // Create signal pool
+            createSignalPool();
+        }
+        
+        function createSynapses() {
+            // For each neuron, connect to several others
+            neurons.forEach(neuron => {
+                // Determine how many connections (larger neurons have more connections)
+                const connectionCount = 3 + Math.floor(neuron.scale * 5);
+                
+                // Find nearest neighbors
+                const potentialTargets = neurons
+                    .filter(target => target.id !== neuron.id)
+                    .map(target => {
+                        return {
+                            neuron: target,
+                            distance: neuron.position.distanceTo(target.position)
+                        };
+                    })
+                    .sort((a, b) => a.distance - b.distance);
+                
+                // Connect to closest neurons, plus a few random ones for long-range connections
+                const nearCount = Math.floor(connectionCount * 0.7);
+                const farCount = connectionCount - nearCount;
+                
+                // Connect to nearest neurons
+                for (let i = 0; i < Math.min(nearCount, potentialTargets.length); i++) {
+                    const target = potentialTargets[i].neuron;
+                    createSynapse(neuron, target);
+                }
+                
+                // Add a few random long-range connections
+                const remainingTargets = potentialTargets.slice(nearCount);
+                for (let i = 0; i < Math.min(farCount, remainingTargets.length); i++) {
+                    const randomIndex = Math.floor(Math.random() * remainingTargets.length);
+                    const target = remainingTargets[randomIndex].neuron;
+                    remainingTargets.splice(randomIndex, 1); // Remove to avoid duplicates
+                    
+                    if (target) {
+                        createSynapse(neuron, target);
+                    }
+                }
+            });
+        }
+        
+        function createSynapse(from, to) {
+            // Calculate direction vector
+            const direction = new THREE.Vector3().subVectors(to.position, from.position);
+            const distance = direction.length();
+            
+            // Create synapse as a thin cylinder
+            const geometry = new THREE.CylinderGeometry(0.2, 0.2, distance, 8, 1, true);
+            const material = synapseMaterial.clone();
+            const synapse = new THREE.Mesh(geometry, material);
+            
+            // Position and orient the cylinder
+            synapse.position.copy(from.position);
+            synapse.position.addScaledVector(direction, 0.5);
+            
+            // Orient the cylinder to point from source to target
+            synapse.quaternion.setFromUnitVectors(
+                new THREE.Vector3(0, 1, 0),
+                direction.clone().normalize()
+            );
+            
+            // Add to scene
+            scene.add(synapse);
+            
+            // Store synapse data
+            const synapseData = {
+                mesh: synapse,
+                from: from.id,
+                to: to.id,
+                distance: distance,
+                direction: direction.clone().normalize(),
+                strength: 0.5 + Math.random() * 0.5,
+                isBidirectional: Math.random() < 0.3,
+                originalMaterial: material
+            };
+            
+            synapses.push(synapseData);
+            from.connections.push({ to: to.id, synapse: synapseData });
+            
+            // If bidirectional, add reverse connection
+            if (synapseData.isBidirectional) {
+                to.connections.push({ to: from.id, synapse: synapseData, isReverse: true });
+            }
+        }
+        
+        function createSignalPool() {
+            // Create a pool of signal objects to reuse
+            const signalGeometry = new THREE.SphereGeometry(1, 8, 8);
+            
+            // Create 50 signal meshes
+            for (let i = 0; i < 50; i++) {
+                const signal = new THREE.Mesh(signalGeometry, firingExcitatorySignalMaterial.clone());
+                signal.visible = false;
+                scene.add(signal);
+                
+                signals.push({
+                    mesh: signal,
+                    inUse: false,
+                    id: null,
+                    position: new THREE.Vector3(),
+                    velocity: new THREE.Vector3(),
+                    target: null,
+                    isInhibitory: false
+                });
+            }
+        }
+        
+        function setupEventListeners() {
+            // Button event listeners
+            startBtn.addEventListener('click', startSimulation);
+            stopBtn.addEventListener('click', stopSimulation);
+            resetBtn.addEventListener('click', () => {
+                stopSimulation();
+                resetSimulation();
+            });
+            
+            // Slider event listeners
+            spontaneousRateSlider.addEventListener('input', function() {
+                spontaneousRate = parseInt(this.value);
+                spontaneousRateValue.textContent = spontaneousRate + '%';
+            });
+            
+            inhibitionChanceSlider.addEventListener('input', function() {
+                inhibitionChance = parseInt(this.value);
+                inhibitionChanceValue.textContent = inhibitionChance + '%';
+            });
+            
+            signalSpeedSlider.addEventListener('input', function() {
+                signalSpeed = parseInt(this.value);
+                let speedText;
+                switch(signalSpeed) {
+                    case 1: speedText = 'Very Slow'; break;
+                    case 2: speedText = 'Slow'; break;
+                    case 3: speedText = 'Normal'; break;
+                    case 4: speedText = 'Fast'; break;
+                    case 5: speedText = 'Very Fast'; break;
+                    default: speedText = 'Normal';
+                }
+                signalSpeedValue.textContent = speedText;
+            });
+            
+            neuronsCountSlider.addEventListener('input', function() {
+                neuronsCount = parseInt(this.value);
+                let densityText;
+                if (neuronsCount < 30) densityText = 'Sparse';
+                else if (neuronsCount < 60) densityText = 'Medium';
+                else if (neuronsCount < 80) densityText = 'Dense';
+                else densityText = 'Very Dense';
+                
+                neuronsCountValue.textContent = densityText;
+            });
+            
+            neuronsCountSlider.addEventListener('change', function() {
+                // Recreate network when slider is released
+                loading.style.display = 'flex';
+                setTimeout(() => {
+                    stopSimulation();
+                    createNeuralNetwork();
+                    loading.style.display = 'none';
+                }, 100);
+            });
+        }
+        
+        function startSimulation() {
+            if (simulationRunning) return;
+            
+            simulationRunning = true;
+            
+            // Clear any previous interval
+            clearInterval(simulationInterval);
+            
+            // Start the main simulation loop
+            simulationInterval = setInterval(updateSimulation, 100);
+        }
+        
+        function stopSimulation() {
+            simulationRunning = false;
+            clearInterval(simulationInterval);
+        }
+        
+        function resetSimulation() {
+            // Reset all neurons to resting state
+            neurons.forEach(neuron => {
+                neuron.state = 'resting';
+                neuron.excitation = 0;
+                neuron.lastFired = 0;
+                
+                // Reset appearance
+                if (neuron.isInhibitory) {
+                    neuron.mesh.material = inhibitoryNeuronMaterial.clone();
+                } else {
+                    neuron.mesh.material = neuronMaterial.clone();
+                }
+            });
+            
+            // Reset all synapses
+            synapses.forEach(synapse => {
+                synapse.mesh.material = synapseMaterial.clone();
+                synapse.originalMaterial = synapse.mesh.material;
+            });
+            
+            // Hide all signals
+            signals.forEach(signal => {
+                signal.mesh.visible = false;
+                signal.inUse = false;
+            });
+        }
+        
+        function clearNeuralNetwork() {
+            // Remove existing neurons
+            neurons.forEach(neuron => {
+                scene.remove(neuron.mesh);
+            });
+            
+            // Remove existing synapses
+            synapses.forEach(synapse => {
+                scene.remove(synapse.mesh);
+            });
+            
+            // Remove existing signals
+            signals.forEach(signal => {
+                scene.remove(signal.mesh);
+            });
+            
+            // Clear arrays
+            neurons = [];
+            synapses = [];
+            signals = [];
+        }
+        
+        function updateSimulation() {
+            const currentTime = Date.now();
+            
+            // Update neuron states
+            neurons.forEach(neuron => {
+                // Handle refractory period
+                if (neuron.state === 'refractory' && currentTime - neuron.lastFired > neuron.refractoryPeriod) {
+                    neuron.state = 'resting';
+                    neuron.excitation = 0;
+                    
+                    // Reset appearance
+                    if (neuron.isInhibitory) {
+                        neuron.mesh.material = inhibitoryNeuronMaterial.clone();
+                    } else {
+                        neuron.mesh.material = neuronMaterial.clone();
+                    }
+                }
+                
+                // Decay excitation over time for excited neurons
+                if (neuron.state === 'excited') {
+                    neuron.excitation -= 5;
+                    if (neuron.excitation <= 0) {
+                        neuron.state = 'resting';
+                        neuron.excitation = 0;
+                        
+                        // Reset appearance
+                        if (neuron.isInhibitory) {
+                            neuron.mesh.material = inhibitoryNeuronMaterial.clone();
+                        } else {
+                            neuron.mesh.material = neuronMaterial.clone();
+                        }
+                    }
+                }
+                
+                // Spontaneous firing
+                if (neuron.state === 'resting' && Math.random() * 100 < spontaneousRate / 10) {
+                    // Increase excitation
+                    neuron.excitation += 30 + Math.random() * 30;
+                    
+                    // Check if threshold reached
+                    if (neuron.excitation >= neuron.threshold) {
+                        fireNeuron(neuron);
+                    } else {
+                        // Show excited state with subtle glow
+                        neuron.state = 'excited';
+                        neuron.mesh.material = neuron.isInhibitory 
+                            ? inhibitoryNeuronMaterial.clone() 
+                            : neuronMaterial.clone();
+                        neuron.mesh.material.emissive.setHex(0x4466cc);
+                        neuron.mesh.material.emissiveIntensity = 1.5;
+                    }
+                }
+            });
+            
+            // Update signal positions
+            signals.forEach(signal => {
+                if (signal.inUse && signal.target) {
+                    // Move signal toward target
+                    signal.position.add(signal.velocity);
+                    signal.mesh.position.copy(signal.position);
+                    
+                    // Check if signal reached target
+                    const targetNeuron = neurons[signal.target];
+                    if (targetNeuron && signal.position.distanceTo(targetNeuron.position) < 3) {
+                        // Signal reached the target
+                        signal.mesh.visible = false;
+                        signal.inUse = false;
+                        
+                        // Effect on target neuron
+                        if (targetNeuron.state !== 'refractory') {
+                            if (signal.isInhibitory) {
+                                // Inhibitory effect
+                                targetNeuron.excitation = Math.max(0, targetNeuron.excitation - 30);
+                                if (targetNeuron.state === 'excited') {
+                                    targetNeuron.state = 'resting';
+                                    if (targetNeuron.isInhibitory) {
+                                        targetNeuron.mesh.material = inhibitoryNeuronMaterial.clone();
+                                    } else {
+                                        targetNeuron.mesh.material = neuronMaterial.clone();
+                                    }
+                                }
+                            } else {
+                                // Excitatory effect
+                                targetNeuron.excitation += 30;
+                                
+                                // Check if threshold reached
+                                if (targetNeuron.excitation >= targetNeuron.threshold) {
+                                    // Threshold reached, fire the neuron
+                                    fireNeuron(targetNeuron);
+                                } else if (targetNeuron.state === 'resting') {
+                                    // Show excited state
+                                    targetNeuron.state = 'excited';
+                                    targetNeuron.mesh.material = targetNeuron.isInhibitory 
+                                        ? inhibitoryNeuronMaterial.clone() 
+                                        : neuronMaterial.clone();
+                                    targetNeuron.mesh.material.emissive.setHex(0x4466cc);
+                                    targetNeuron.mesh.material.emissiveIntensity = 1.5;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function fireNeuron(neuron) {
+            // Set neuron to firing state
+            neuron.state = 'firing';
+            neuron.lastFired = Date.now();
+            
+            // Visual effect - make neuron glow
+            neuron.mesh.material = firingNeuronMaterial.clone();
+            neuron.mesh.material.emissiveIntensity = 2;
+            
+            // Create a temporary pulsing effect
+            const originalScale = neuron.scale;
+            const pulse = { scale: originalScale };
+            
+            // Pulse animation
+            const pulseTween = () => {
+                neuron.mesh.scale.set(pulse.scale * 1.3, pulse.scale * 1.3, pulse.scale * 1.3);
+                
+                setTimeout(() => {
+                    // Return to normal size
+                    neuron.mesh.scale.set(originalScale, originalScale, originalScale);
+                    
+                    // Schedule transition to refractory state
+                    setTimeout(() => {
+                        if (neuron.state === 'firing') {
+                            neuron.state = 'refractory';
+                            neuron.mesh.material.opacity = 0.5;
+                            neuron.mesh.material.emissiveIntensity = 0.2;
+                        }
+                    }, 200);
+                }, 150);
+            };
+            
+            pulseTween();
+            
+            // Send signals along all connections
+            neuron.connections.forEach((connection, index) => {
+                // Small delay for signal start
+                setTimeout(() => {
+                    sendSignal(neuron, neurons[connection.to], connection.synapse, connection.isReverse);
+                }, index * 50 * (5 / signalSpeed)); // Stagger signal starts based on speed
+            });
+        }
+        
+        function sendSignal(from, to, synapse, isReverse) {
+            // Get a free signal object
+            const signalObj = signals.find(s => !s.inUse);
+            if (!signalObj) return; // No free signals
+            
+            // Determine if this is an inhibitory or excitatory signal
+            const isInhibitory = from.isInhibitory || (Math.random() * 100 < inhibitionChance);
+            
+            // Set signal properties
+            signalObj.inUse = true;
+            signalObj.id = Math.random();
+            signalObj.isInhibitory = isInhibitory;
+            
+            // Set signal appearance
+            if (isInhibitory) {
+                signalObj.mesh.material = firingInhibitorySignalMaterial.clone();
+            } else {
+                signalObj.mesh.material = firingExcitatorySignalMaterial.clone();
+            }
+            
+            // Set starting position
+            signalObj.position.copy(from.position);
+            signalObj.mesh.position.copy(from.position);
+            signalObj.target = to.id;
+            
+            // Calculate velocity based on direction
+            const direction = isReverse
+                ? new THREE.Vector3().subVectors(from.position, to.position).normalize()
+                : new THREE.Vector3().subVectors(to.position, from.position).normalize();
+            
+            // Set velocity (adjust speed with slider)
+            const speed = 1.5 * signalSpeed;
+            signalObj.velocity = direction.multiplyScalar(speed);
+            
+            // Make signal visible
+            signalObj.mesh.visible = true;
+            
+            // Highlight the synapse with a matching color
+            synapse.mesh.material = isInhibitory 
+                ? firingInhibitorySynapseMaterial.clone() 
+                : firingExcitatorySynapseMaterial.clone();
+            
+            // Add pulsing effect to the synapse
+            const pulseInterval = setInterval(() => {
+                if (synapse.mesh.material.opacity > 0.2) {
+                    synapse.mesh.material.opacity -= 0.05;
+                }
+            }, 50);
+            
+            // Reset synapse appearance after a delay
+            setTimeout(() => {
+                clearInterval(pulseInterval);
+                synapse.mesh.material = synapseMaterial.clone();
+                synapse.originalMaterial = synapse.mesh.material;
+            }, 800);
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+    </script>
+</body>
+</html>
